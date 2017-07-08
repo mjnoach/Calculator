@@ -3,23 +3,22 @@ import java.util.*;
 public class Processor {
 
     private IOHandler ioHandler;
-    private Map<Character, Integer> priorityMap = new HashMap<Character, Integer>(6) { {
-        put('(', 0);
-        put(')', 0);
-        put('+', 1);
-        put('-', 1);
-        put('*', 2);
-        put('/', 2);
-    }
-    };
+    private Map<Character, Integer> priorityMap = new HashMap<>(6);
 
     /*
     * Saves reference to IOHandler instance
+    * Sets priorityMap elements
     *
     * @param ioHandler IOHandler
     * */
     public Processor(IOHandler ioHandler) {
         this.ioHandler = ioHandler;
+        priorityMap.put('(', 0);
+        priorityMap.put(')', 0);
+        priorityMap.put('+', 1);
+        priorityMap.put('-', 1);
+        priorityMap.put('*', 2);
+        priorityMap.put('/', 2);
     }
 
     /*

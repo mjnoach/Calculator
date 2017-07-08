@@ -59,7 +59,7 @@ public class Validator {
     private boolean forbiddenInput(List input) {
         for (Object o : input) {
             if (o instanceof String) {
-                ioHandler.setError("Contains forbidden/invalid input.");
+                ioHandler.setError("Contains forbidden / invalid input.");
                 return true;
             }
         }

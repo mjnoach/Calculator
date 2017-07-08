@@ -21,7 +21,7 @@ public class IOHandler {
     * Prints out initial message
     * */
     public void initialMessage() {
-        System.out.print("### JAVA CONSOLE CALCULATOR ###\n" +
+        System.out.print("\n\n### JAVA CONSOLE CALCULATOR ###\n" +
                 "# \n" +
                 "# List of available operations:\n" +
                 "# \n" +
@@ -30,8 +30,10 @@ public class IOHandler {
                 "# - multiplication: '*'\n" +
                 "# - division: '/'\n" +
                 "# \n" +
-                "# Only round brackets are allowed.\n" +
-                "# To pass a floating point numbers use '.'\n" +
+                "# Only round brackets are allowed\n" +
+                "# To pass a floating point number use '.'\n" +
+                "# Negative numbers need to be in between parentheses\n" +
+                "# \n" +
                 "# Type 'exit' to close.\n");
     }
 
