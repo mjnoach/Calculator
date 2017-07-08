@@ -1,4 +1,4 @@
 # Calculator
 Java console calculator
 
-This project serves as a brief demonstration of my abilities and skills in programming with Java.
+This project serves as a brief demonstration of my abilities in programming with Java.
