@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,41 +9,46 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatorTest {
 
+    private Validator validator = new Validator(new IOHandler());
+
     @Test
-    void validReturnsFalseForIncorrectInput() {
-        Validator validator = new Validator(new IOHandler());
-
-        // request empty
+    void throwsExceptionWhenInputIsEmpty() {
         List input = new LinkedList();
-        assertFalse(validator.valid(input));
-
-        // invalid input
-        input.add("2 + two =");
-        assertFalse(validator.valid(input));
-
-        // invalid order of parentheses
-        input.clear();
-        input.addAll(Arrays.asList(new Object[] {')', '('}));
-        assertFalse(validator.valid(input));
-
-        // uneven number of parentheses
-        input.clear();
-        input.addAll(Arrays.asList(new Object[] {'(', '(', ')'}));
-        assertFalse(validator.valid(input));
-
-        // no operands
-        input.clear();
-        input.addAll(Arrays.asList(new Object[] {'+'}));
-        assertFalse(validator.valid(input));
-
-        // invalid sequence of operators
-        input.clear();
-        input.addAll(Arrays.asList(new Object[] {2, '+', '-', 5}));
-        assertFalse(validator.valid(input));
-
-        input.clear();
-        input.addAll(Arrays.asList(new Object[] {2, '+', '(', ')', 3}));
-        assertFalse(validator.valid(input));
+        assertThrows(InputMismatchException.class,() -> validator.validate(input));
     }
 
+    @Test
+    void throwsExceptionWhenInputContainsForbiddenText() {
+        List input = new LinkedList();
+        input.add("2 + two =");
+        assertThrows(InputMismatchException.class,() -> validator.validate(input));
+    }
+
+    @Test
+    void throwsExceptionWhenInvalidOrderOfParentheses() {
+        List input = new LinkedList();
+        input.addAll(Arrays.asList(new Object[] {')', '('}));
+        assertThrows(InputMismatchException.class,() -> validator.validate(input));
+    }
+
+    @Test
+    void throwsExceptionWhenUnevenNumberOfParentheses() {
+        List input = new LinkedList();
+        input.addAll(Arrays.asList(new Object[] {'(', '(', ')'}));
+        assertThrows(InputMismatchException.class,() -> validator.validate(input));
+    }
+
+    @Test
+    void throwsExceptionWhenNoOperandsProvvided() {
+        List input = new LinkedList();
+        input.addAll(Arrays.asList(new Object[] {'+'}));
+        assertThrows(InputMismatchException.class,() -> validator.validate(input));
+    }
+
+    @Test
+    void throwsExceptionWhenInvalidSequenceOfOperators() {
+        List input = new LinkedList();
+        input.addAll(Arrays.asList(new Object[] {2, '+', '-', 5}));
+        assertThrows(InputMismatchException.class,() -> validator.validate(input));
+    }
 }

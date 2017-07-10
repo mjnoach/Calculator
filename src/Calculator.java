@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.List;
 
 /*
@@ -30,10 +31,17 @@ public class Calculator {
             List input = ioHandler.getInput();
             if (input.size() == 1 && input.get(0) instanceof String && ((String)input.get(0)).equalsIgnoreCase("exit"))
                 return;
-            if (!validator.valid(input))
+            try {
+                validator.validate(input);
+                Object result = processor.process(input);
+                if ((Double) result % 1.0 == 0) {
+                    result = ((Double) result).intValue();
+                }
+                ioHandler.print("Result: " + result);
+            }
+            catch (InputMismatchException e) {
+                ioHandler.setError(e.getMessage());
                 ioHandler.printError();
-            else {
-                processor.process(input);
             }
         }
     }

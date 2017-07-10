@@ -83,7 +83,7 @@ public class IOHandler {
     }
 
     /*
-    * Parses input string into the following objects: Integer, String, Character
+    * Parses input string into the following objects: Double, String, Character
     *
     * @param input String
     *

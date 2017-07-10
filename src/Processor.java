@@ -26,18 +26,9 @@ public class Processor {
     *
     * @param input List validated list of parsed user input
     * */
-    public void process(List input) {
+    public double process(List input) {
         input = reversePolishNotation(input);
-        Object result = calculate(input);
-        if (result == null) {
-            ioHandler.printError();
-        }
-        else {
-            if ((Double) result % 1.0 == 0) {
-                result = ((Double) result).intValue();
-            }
-            ioHandler.print("Result: " + result);
-        }
+        return calculate(input);
     }
 
     /*
@@ -59,8 +50,7 @@ public class Processor {
                         input.set(i-2, doOperation(a, b, c));
                     }
                     catch (IndexOutOfBoundsException e) {
-                        ioHandler.setError("Contains invalid input.");
-                        return null;
+                        throw new InputMismatchException("Contains invalid input.");
                     }
                     break;
                 }
@@ -84,8 +74,7 @@ public class Processor {
         else if (operator == '*') return a * b;
         else {
             if (b == 0) {
-                ioHandler.setError("Attempt to divide by zero.");
-                return null;
+                throw new InputMismatchException("Attempt to divide by zero.");
             }
             return a / b;
         }
@@ -111,8 +100,9 @@ public class Processor {
                     stack.push((Character) element);
                 }
                 else if ((Character) element == ')') {
-                    rvpExpression.add(stack.pop());
-                    stack.pop();                            // pop '(' from the stack
+                    if (stack.peek() != '(')
+                        rvpExpression.add(stack.pop());
+                    else stack.pop();                           // pop '(' from the stack
                 }
                 else if (stack.isEmpty()) {
                     stack.push((Character) element);
