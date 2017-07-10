@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 public class Validator {
 
     private IOHandler ioHandler;
-//    private String basicOperators = "+-*/";
 
     /*
     * Saves reference to IOHandler instance
@@ -129,14 +128,6 @@ public class Validator {
                             return true;
                         }
                     }
-
-//                    Pattern allowed = Pattern.compile("([(+\\-*/)][()+\\-*/])");                                // <------
-//                    Matcher matcher = allowed.matcher(operators);
-
-//                    if (!matcher.find()) {
-//                        ioHandler.setError("Invalid sequence of operators.");
-//                        return true;
-//                    }
                 }
                 previous = input.get(i);
             }

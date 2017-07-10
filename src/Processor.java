@@ -59,7 +59,7 @@ public class Processor {
                         input.set(i-2, doOperation(a, b, c));
                     }
                     catch (IndexOutOfBoundsException e) {
-                        ioHandler.setError("Contains forbidden input.");
+                        ioHandler.setError("Contains invalid input.");
                         return null;
                     }
                     break;

@@ -53,7 +53,6 @@ public class IOHandler {
     * */
     public void setError(String error) {
         this.error += error;
-        // static?
     }
 
     /*

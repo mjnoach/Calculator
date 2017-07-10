@@ -37,13 +37,4 @@ public class Calculator {
             }
         }
     }
-
-    /*
-    * Returns a reference to ioHandler
-    *
-    * @return IOHandler
-    * */
-    public IOHandler getIOHandler() {
-        return ioHandler;
-    }
 }
